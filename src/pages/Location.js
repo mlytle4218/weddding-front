@@ -3,42 +3,20 @@ import StoryLogo from '../images/storyinnlogo.png'
 import Story1 from '../images/StoryInn1.jpg'
 import Story2 from '../images/StoryInn2.jpg'
 import Story3 from '../images/StoryInn3.jpg'
-import { withScriptjs, withGoogleMap, GoogleMap} from 'react-google-maps';
-
-
-
-
-import MyMarker from './MyMarker';
-
-const MyMapComponent = withScriptjs(withGoogleMap((props) =>
-  <GoogleMap
-    defaultZoom={10}
-    defaultCenter={{ lat: 39.099094, lng: -86.214057 }}
-  >
-    {props.places.map((place,itr)=>{
-        place.locationUrl = "http://www.google.com/maps?q=" + place.address
-        return (
-            <MyMarker place={place} key={itr} />
-        )
-    })}
-  </GoogleMap>
-))
-
+import mapIcon from "../images/map_icon.png"
 
 
 class Location extends Component {
+    openDirections = () =>{
+        window.location.href = " http://www.google.com/maps?q=Story Inn, Indiana 135, Nashville, IN"
+    }
 
         render() {
-
-            const places = [
-                { lat: 39.099205, lng: -86.214153, name: 'Story Inn', description: "Location of Ceremony and Reception", address: "Story Inn, Indiana 135, Nashville, IN" },
-                { lat: 39.207222, lng: -86.251111, name: 'Nashville', description: "Location of largest nearby town and reserved rooms", address: "Nashville, IN" },
-                {lat: 39.200600, lng: -86.240073, name: "Quality Inn Nashville", description: "Location of reserved rooms", address: "51 Chestnut Street West, Nashville, IN, 47448"}
-            ]
             return (
                 <div className='location'>
                     <div>
                         <img src={StoryLogo} alt="Story Inn Logo" />
+                        <img className="map_icon" src={mapIcon} alt='Open map' onClick={this.openDirections}/>
                     </div>
                     <div className='location_panel location_panel_left'>
                         <img src={Story1} alt="Story Inn - front of cafe" />
@@ -59,77 +37,6 @@ Story never recovered from the Great Depression (1929-1933), as families abandon
                         </div>
                     
                     </div>
-                    <MyMapComponent
-                        isMarkerShown
-                        places = {places}
-                        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi_HztGpsI_8d7CGSJan4qsihVeaBdJJ8&v=3.exp&libraries=geometry,drawing,places"
-                        loadingElement={<div style={{ height: `100%` }} />}
-                        containerElement={<div style={{ height: `400px` }} />}
-                        mapElement={<div style={{ height: `100%`, borderRadius: `10px` }} />}
-                        
-                    />
-
-
-
-                    {/* <Map isMarkerShown
-                        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi_HztGpsI_8d7CGSJan4qsihVeaBdJJ8&v=3.exp&libraries=geometry,drawing,places"
-
-                        // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi_HztGpsI_8d7CGSJan4qsihVeaBdJJ8"
-                        loadingElement={<div style={{ height: `100%` }} />}
-                        containerElement={<div style={{ height: `400px` }} />}
-                        mapElement={<div style={{ height: `100%` }} />}
-                    /> */}
-
-
-                    {/* <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMB5xr2XTB2WGlmypCK0XzK37Ut6apcp4"></script> */}
-
-                    {/* AIzaSyAMB5xr2XTB2WGlmypCK0XzK37Ut6apcp4 */}
-                    {/* <Map center={mapCenter} zoom={10} style={{ height: "100vh" }} >
-                    <TileLayer
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-                    />
-                </Map> */}
-
-
-                    {/* <Map google={this.props.google} /> */}
-
-                    {/* <LeafletMap
-                        center={[39.099094, -86.214057]}
-                        zoom={10}
-                        maxZoom={15}
-                        attributionControl={true}
-                        zoomControl={true}
-                        doubleClickZoom={true}
-                        scrollWheelZoom={true}
-                        dragging={true}
-                        animate={true}
-                        easeLinearity={0.35}
-                    >
-                        <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' />
-                        {places.map((item)=> 
-                            <MyMarker location={item} />
-                            )} */}
-
-
-
-
-                    {/* <MyMarker location={places[0]} /> */}
-                    {/* <Marker position={[places[0].lat, places[0].lon]}>
-                            <Popup>
-                                <a href="https://www.google.com/maps/@39.099094,-86.214057,15z?hl=en&authuser=0" target='_blank' >Story Inn, IN</a>
-                            </Popup>
-                        </Marker> */}
-
-
-
-
-
-                    {/* </LeafletMap> */}
-
-
-
-
                 </div >
             );
         }

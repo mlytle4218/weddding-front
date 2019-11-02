@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import qualityInn from "../images/IN419ExteriorTemp4_1.webp"
+import mapIcon from "../images/map_icon.png"
 
 class Gallery extends Component {
+    openDirections = () =>{
+        window.location.href = " http://www.google.com/maps?q=51 Chestnut Street West, Nashville, IN, 47448"
+    }
     render() {
         return (
             <div className="lodgings">
@@ -19,6 +23,9 @@ class Gallery extends Component {
                                 For booking information, contact Lisa Lee<br></br>
                                 Phone: (818)<br></br>
                                 Email: LISA@AVETRAVELGROUP.COM
+                        </p>
+                        <p>
+                            <img src={mapIcon} alt='Click to open map' className="map_icon" onClick={this.openDirections} />
                         </p>
                         </div>
 
