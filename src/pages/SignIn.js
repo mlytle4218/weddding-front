@@ -38,7 +38,7 @@ class SignIn extends Component {
 
     get_invitation_data(token) {
         axios.get(
-            'http://localhost:3001/api/invitation',
+            '/api/invitation',
             { headers: { "Authorization": "Bearer " + token } }
         ).then(response => {
             this.setState({

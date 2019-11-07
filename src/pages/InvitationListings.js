@@ -71,7 +71,7 @@ export default class Invitation_Listings extends Component {
     }
 
     print_invitations(token, invitations){
-        // console.log(invitations)
+        console.log(auth.isAuth())
         axios.put(
             '/api/print/codes',
             invitations,

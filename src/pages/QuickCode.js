@@ -57,7 +57,7 @@ class QuickCode extends Component {
     getInvitation(id, token) {
         axios
             .get(
-                "http://localhost:3001/api/invitation/" + id,
+                "/api/invitation/" + id,
                 { headers: { 'Authorization': "Bearer " + token } }
 
             ).then((response) => {
@@ -161,7 +161,7 @@ class QuickCode extends Component {
         });
         axios
             .put(
-                "http://localhost:3001/api/invitation/" + this.state.id,
+                "/api/invitation/" + this.state.id,
                 {
                     "email": this.state.email,
                     "songs": songs,
