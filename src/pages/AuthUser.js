@@ -12,7 +12,7 @@ class AuthUser {
     login(loginCode, loginPassword, cb) {
         axios
             .post(
-                "http://localhost:3001/api/user/signIn",
+                "/api/user/signIn",
                 {
                     email: loginCode,
                     password: loginPassword

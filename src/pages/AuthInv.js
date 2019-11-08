@@ -12,7 +12,7 @@ class AuthInv {
     login(loginCode, loginPassword, cb) {
         axios
             .post(
-                "http://localhost:3001/api/invitation/quickCode/",
+                "/api/invitation/quickCode/",
                 {
                     code: loginCode,
                     password: loginPassword
