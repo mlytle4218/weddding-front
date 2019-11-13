@@ -67,9 +67,7 @@ class QuickCode extends Component {
                 if (response.data.rsvp > 1) {
                     this.setState({ plus_one: true })
                 }
-                // response.data.songs.push({ 'name': "" })
                 this.setState({ ...response.data })
-                // console.log(this.state)
             }).catch((error) => {
                 console.log(error)
             })
@@ -111,7 +109,6 @@ class QuickCode extends Component {
     handleChange(event) {
         let value
         let check 
-        console.log(event.target.name)
         switch (event.target.name) {
             case "email":
                 value = event.target.value
@@ -131,8 +128,6 @@ class QuickCode extends Component {
                 value = event.target.value
 
         }
-        console.log(check)
-        console.log(value)
         if (check){
             this.setState({
                 ...this.state,
@@ -173,10 +168,6 @@ class QuickCode extends Component {
             }).catch((error) => {
                 console.log(error)
             })
-    }
-    runLog(event) {
-        console.log(this.state)
-        event.preventDefault()
     }
 
 
@@ -245,7 +236,6 @@ class QuickCode extends Component {
 
                         <button className="guestFormSubmit" type="submit">Save changes</button>
                     </form> : null}
-                {/* <button onClick={this.runLog.bind(this)}>trial</button> */}
                 </div>
             </div >
         );

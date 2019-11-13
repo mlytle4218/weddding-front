@@ -89,7 +89,6 @@ export default class Listing extends Component {
     this.passToInvitationListingsListingToUpdateBackEnd = this.passToInvitationListingsListingToUpdateBackEnd.bind(this)
   }
   warnSaveNeeded() {
-    // console.log('warning')
     this.props.item.updated = false
   }
 
@@ -193,10 +192,6 @@ export default class Listing extends Component {
     this.props.item.people.splice(itr, 1)
     this.props.sendListingToBeUpdatedToParent(this.props.item)
   }
-  read(event){
-    event.preventDefault()
-    console.log(this.props.item)
-  }
 
 
 
@@ -275,7 +270,6 @@ export default class Listing extends Component {
           className={this.props.item.updated ? "updated" : "update"} 
           onClick={this.passToInvitationListingsListingToUpdateBackEnd}
           >Save Invitation</button>
-          {/* <button onClick={this.read.bind(this)}>read</button> */}
       </div>
     );
   }

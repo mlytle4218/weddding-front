@@ -22,15 +22,12 @@ class AuthUser {
                 { 'Access-Control-Allow-Credentials': true }
             )
             .then(response => {
-                // console.log(response.data)
                 let token_json = jwt_decode(response.data.token)
                 let tokenExpiration = token_json.exp - token_json.iat
                 let d = new Date();
                 d.setTime(d.getTime() + tokenExpiration);
-                console.log(tokenExpiration)
                 Cookies.set('adminToken', response.data.token, { expires: d, path: '/' });
                 Cookies.set('invId', response.data.id, { expires: d, path: '/' });
-                // Cookies.set('invCode', loginCode, { expires: d, path: '/' });
                 cb(response.data.result)
             })
             .catch(error => {

@@ -27,7 +27,9 @@ export default class Invitation_Listings extends Component {
             '/api/invitation',
             { headers: { "Authorization": "Bearer " + token } }
         ).then(response => {
-            console.log(response)
+            response.data.sort((a,b) => 
+                (a.people[0].name > b.people[0].name) ? 1 : -1
+            )
             response.data.forEach((item) => {
                 item.show = false;
                 item.updated = true;
@@ -45,7 +47,6 @@ export default class Invitation_Listings extends Component {
             listing,
             { headers: { "Authorization": "Bearer ".concat(token) } }
         ).then(response => {
-            console.log(response)
             if (response.data._id) {
                 response.data.show = false;
                 response.data.updated = true
@@ -71,7 +72,6 @@ export default class Invitation_Listings extends Component {
     }
 
     print_invitations(token, invitations){
-        console.log(auth.isAuth())
         axios.put(
             '/api/print/codes',
             invitations,
@@ -120,7 +120,6 @@ export default class Invitation_Listings extends Component {
 
     }
     sendListingToBeUpdatedToParent(listing) {
-        // console.log(listing)
         this.setState(
             {
                 invitation_data: this.state.invitation_data.map(
@@ -141,7 +140,6 @@ export default class Invitation_Listings extends Component {
 
     handleUpdate(event) {
         event.preventDefault()
-        // console.log(eval(this.state.invitation_data))
         let newInvitation = {
             "address": {
                 "line1": "",
@@ -163,19 +161,6 @@ export default class Invitation_Listings extends Component {
             "updated": false
         }
         this.create_invitation(this.state.authToken,newInvitation)
-        // let returnState = this.state.invitation_data.concat(newInvitation)
-        // this.setState(
-        //     {
-        //         invitation_data: returnState
-        //     },
-        //     () => console.log(this.state)
-        // )
-        // this.setState(
-        //     {
-        //         invitation_data: this.state.invitation_data.concat(newInvitation)
-        //     }
-        // );
-        // console.log(this.state.invitation_data)
 
     }
     showListing(listing) {
@@ -192,11 +177,9 @@ export default class Invitation_Listings extends Component {
                 )
             }
         )
-        // console.log(this.state.invitation_data)
     }
     showStateInfo(event) {
         event.preventDefault()
-        console.log(this.state.invitation_data)
     }
     showPrintInfo(event){
         event.preventDefault()
@@ -239,7 +222,6 @@ export default class Invitation_Listings extends Component {
                         }
                     )}
                     <button type="submit" onClick={this.handleUpdate.bind(this)}>Add New Invitation</button>
-                    {/* <button onClick={this.showStateInfo.bind(this)}>stateinfo</button> */}
                     <button onClick={this.showPrintInfo.bind(this)}>printinfo</button>
                 </form>
             </div>

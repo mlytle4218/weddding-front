@@ -36,7 +36,6 @@ export default class PrintCodes extends Component {
     this.state = {
       response: []
     }
-    console.log('inprinstcodes')
   }
   render() {
     

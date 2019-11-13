@@ -33,9 +33,6 @@ class App extends Component {
             loggedIn: loggedInBool
         })
     }
-    toggleMenu(){
-        console.log('menu')
-    }
 
 
     render() {
@@ -47,7 +44,7 @@ class App extends Component {
                         <li><Link to="/">home</Link></li>
                         <li><Link to="/location">location</Link></li>
                         <li><Link to="/lodgings">lodgings</Link></li>
-                        <li><Link to="/honey_pot">honey pot</Link></li>
+                        <li><Link to="/honey_pot">registry</Link></li>
 
                         {this.state.loggedIn ?
                             <li><Link to="/quick_code_authd">guest info</Link></li> 
