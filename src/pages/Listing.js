@@ -153,9 +153,10 @@ export default class Listing extends Component {
     this.props.item.people = this.props.item.people.filter(
       item => item.name !== ""
     )
-    if (this.testForErrors()){
       this.props.sendListingToBeUpdatedInBackend(this.props.item)
-    }
+    // if (this.testForErrors()){
+    //   this.props.sendListingToBeUpdatedInBackend(this.props.item)
+    // }
     
   }
   addToSongs(event) {
