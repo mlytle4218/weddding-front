@@ -14,16 +14,16 @@ var Address = ({ address, onChangeAddress, errors }) => {
         />
         <br></br>
       </div>
-        <div>
+      <div>
         <label htmlFor="line2">line 2</label>
-          <input
-            type="text"
-            name="line2"
-            value={address.line2}
-            onChange={onChangeAddress}
-          />
-          <br></br>
-        </div> 
+        <input
+          type="text"
+          name="line2"
+          value={address.line2}
+          onChange={onChangeAddress}
+        />
+        <br></br>
+      </div>
       <div>
         <input
           type="text"
@@ -81,7 +81,7 @@ export default class Listing extends Component {
     super(props)
     this.state = {
       errors: {
-        addressLine1Error : false
+        addressLine1Error: false
       }
 
     }
@@ -133,13 +133,13 @@ export default class Listing extends Component {
     this.props.sendListingToBeUpdatedToParent(this.props.item)
   }
 
-  testForErrors(){
+  testForErrors() {
     let result = true
     let listing = this.props.item
-    if (listing.address.line1.length < 1){
+    if (listing.address.line1.length < 1) {
       result = false
       // this.state.addressLine1Error = true
-      this.setState({addressLine1Error: true})
+      this.setState({ addressLine1Error: true })
     }
     return result
   }
@@ -153,11 +153,11 @@ export default class Listing extends Component {
     this.props.item.people = this.props.item.people.filter(
       item => item.name !== ""
     )
-      this.props.sendListingToBeUpdatedInBackend(this.props.item)
+    this.props.sendListingToBeUpdatedInBackend(this.props.item)
     // if (this.testForErrors()){
     //   this.props.sendListingToBeUpdatedInBackend(this.props.item)
     // }
-    
+
   }
   addToSongs(event) {
     event.preventDefault()
@@ -187,7 +187,7 @@ export default class Listing extends Component {
     this.warnSaveNeeded()
     this.props.item.people[itr].name = event.target.value
   }
-  removeFromPeople(itr, event){
+  removeFromPeople(itr, event) {
     event.preventDefault()
     this.warnSaveNeeded()
     this.props.item.people.splice(itr, 1)
@@ -197,50 +197,50 @@ export default class Listing extends Component {
 
 
   render() {
-    
+
     return (
       <div className="main-invitaion-div">
         <div>
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          name="email"
-          defaultValue={this.props.item.email}
-          onChange={this.passToInvitationListingsListingToUpdateState}
-        /></div>
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            name="email"
+            defaultValue={this.props.item.email}
+            onChange={this.passToInvitationListingsListingToUpdateState}
+          /></div>
         <div>
           <label htmlFor="quickCode">Quick Code</label>
-        <input 
-          type="text"
-          name="quickCode"
-          value={this.props.item.quickCode}
-          onChange={this.passToInvitationListingsListingToUpdateState}
-        /></div>
-       <div>
-        <label htmlFor="email">Max RSVP</label>
-        <input
-          type="number"
-          name="allowed"
-          defaultValue={this.props.item.rsvpAllowed}
-          min={0}
-          onChange={this.passToInvitationListingsListingToUpdateState}
-        /></div>
+          <input
+            type="text"
+            name="quickCode"
+            value={this.props.item.quickCode}
+            onChange={this.passToInvitationListingsListingToUpdateState}
+          /></div>
         <div>
-        <label htmlFor="email">RSVP</label>
-        <input
-          type="number"
-          name="rsvp"
-          defaultValue={this.props.item.rsvp || 0}
-          min={0}
-          max={this.props.item.rsvpAllowed}
-          onChange={this.passToInvitationListingsListingToUpdateState}
-        /></div>
+          <label htmlFor="email">Max RSVP</label>
+          <input
+            type="number"
+            name="allowed"
+            defaultValue={this.props.item.rsvpAllowed}
+            min={0}
+            onChange={this.passToInvitationListingsListingToUpdateState}
+          /></div>
+        <div>
+          <label htmlFor="email">RSVP</label>
+          <input
+            type="number"
+            name="rsvp"
+            defaultValue={this.props.item.rsvp || 0}
+            min={0}
+            max={this.props.item.rsvpAllowed}
+            onChange={this.passToInvitationListingsListingToUpdateState}
+          /></div>
         <p>Address</p>
         {this.props.item.address ?
-        <Address 
-          address={this.props.item.address} 
-          onChangeAddress={this.handleAddressChange.bind(this)} 
-          errors={this.state.errors}
+          <Address
+            address={this.props.item.address}
+            onChangeAddress={this.handleAddressChange.bind(this)}
+            errors={this.state.errors}
           /> :
           null}
         <p>People</p>
@@ -267,10 +267,10 @@ export default class Listing extends Component {
           )
         })}
         <div><button onClick={this.addToSongs.bind(this)}>Add Song</button></div>
-        <button 
-          className={this.props.item.updated ? "updated" : "update"} 
+        <button
+          className={this.props.item.updated ? "updated" : "update"}
           onClick={this.passToInvitationListingsListingToUpdateBackEnd}
-          >Save Invitation</button>
+        >Save Invitation</button>
       </div>
     );
   }

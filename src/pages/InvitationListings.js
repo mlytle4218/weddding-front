@@ -27,6 +27,7 @@ export default class Invitation_Listings extends Component {
             '/api/invitation',
             { headers: { "Authorization": "Bearer " + token } }
         ).then(response => {
+            console.log(response)
             response.data.sort((a,b) => 
                 (a.people[0].name > b.people[0].name) ? 1 : -1
             )
@@ -186,6 +187,7 @@ export default class Invitation_Listings extends Component {
         this.print_invitations(this.state.authToken, this.state.print_array)
     }
     toggle(source){
+        console.log(source)
         let tempState = this.state.print_array.concat(source.target.value)
         this.setState({
             print_array: tempState,
@@ -201,12 +203,13 @@ export default class Invitation_Listings extends Component {
 
                             return (
                                 <div>
-                                    <input type="checkbox" value={item._id} onClick={this.toggle}/>
+                                    {/* <input className='listing_checkbox' type="checkbox" value={item._id} onClick={this.toggle}/> */}
                                     <NameListing
                                         key={itr + 1000}
                                         item={item}
                                         showListing={this.showListing}
                                         sendListingToBeDeletedToParent={this.sendListingToBeDeletedToParent}
+                                        toggle = {this.toggle}
                                     />
                                     {item.show ?
                                         <Listing
