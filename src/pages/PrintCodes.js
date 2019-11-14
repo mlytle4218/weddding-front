@@ -24,7 +24,8 @@ var Code = ({ code }) => {
         {plus && <p>Allowed to bring +{plus}</p>}
         <p>Guest Login ID: {code.quickCode}</p>
         <p>Password: {code.password}</p>
-        <p>Use the QR code and password or go to michelleandmarc.com and use guest login</p>
+        <p>Use the QR code and password or go to</p>
+        <p>michelleandmarc.com and use guest login</p>
       </div>
     </div>
   )
