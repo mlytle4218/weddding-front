@@ -122,6 +122,7 @@ export default class Listing extends Component {
         break
       case "rsvp":
         this.props.item.rsvp = parseInt(event.target.value)
+        console.log(this.props.item.rsvp)
         break
       case "allowed":
         this.props.item.rsvpAllowed = parseInt(event.target.value)

@@ -10,8 +10,6 @@ class QuickCode extends Component {
             code: null,
             token: null,
             id: null,
-            will_attend: false,
-            plus_one: false,
             songs: [],
             people: []
         }
@@ -61,46 +59,36 @@ class QuickCode extends Component {
                 { headers: { 'Authorization': "Bearer " + token } }
 
             ).then((response) => {
-                if (response.data.rsvp > 0) {
-                    this.setState({ will_attend: true })
-                }
-                if (response.data.rsvp > 1) {
-                    this.setState({ plus_one: true })
-                }
                 this.setState({ ...response.data })
             }).catch((error) => {
                 console.log(error)
             })
     }
     handleUpdateWillAttend(event) {
-        if (this.state.will_attend){
+         if (event.target.checked){
             this.setState({
                 ...this.state,
-                will_attend: false,
-                plus_one: false,
-                rsvp: 0
+                rsvp: parseInt(this.state.people.length)
             })
         } else {
             this.setState({
                 ...this.state,
-                will_attend: true,
-                rsvp: parseInt(this.state.rsvp) +1
+                rsvp: 0
             })
 
         }
+        console.log(this.state.rsvp)
     }
     handleUpdatePlusOne(event) {
-        if (this.state.plus_one){
+        if (event.target.checked) {
             this.setState({
                 ...this.state,
-                plus_one: false,
-                rsvp: this.state.rsvp -1
+                rsvp: this.state.rsvp +1
             })
         } else {
             this.setState({
                 ...this.state,
-                plus_one: true,
-                rsvp: this.state.rsvp +1
+                rsvp: this.state.rsvp -1
             })
 
         }
@@ -197,20 +185,19 @@ class QuickCode extends Component {
                                 type="checkbox"
                                 name="will_attend"
                                 id="will_attend"
-                                checked={!!this.state.will_attend}
+                                checked = {this.state.rsvp >= 1}
                                 onChange={this.handleUpdateWillAttend.bind(this)}
                             />
                         </label>
 
 
-                        {this.state.rsvp === 1 ||
-                            this.state.plus_one ?
+                        {  this.state.rsvpAllowed - this.state.people.length == 1   ?
                             <label>Plus 1
                                 <input
                                     type="checkbox"
                                     name="plus_one"
                                     id="plus_one"
-                                    checked={!!this.state.plus_one}
+                                    checked = {this.state.rsvpAllowed == this.state.rsvp}
                                     onChange={this.handleUpdatePlusOne.bind(this)}
                                 />
                             </label>
