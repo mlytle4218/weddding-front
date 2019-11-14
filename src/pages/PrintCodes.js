@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import QRCode from 'qrcode.react';
 
 var Code = ({ code }) => {
-  let url = '/quick_code/' + code.quickCode
+  let url = 'https://michelleandmarc.com/quick_code/' + code.quickCode
   let numPeople = code.people.length
   let peopleListing = ""
   let plus = null
