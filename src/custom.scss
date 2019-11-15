@@ -1,6 +1,7 @@
 $body-bg: #879baf;
 $dusty-blue: #879baf;
-$maroon: #800000;
+// $maroon: #800000;
+$maroon: #520000;
 $dark-gray-opaque: rgba(0, 0, 0, 0.5);
 $update-green: #4caf50;
 $update-red: #f44336;
@@ -47,7 +48,7 @@ body {
     width: 100%;
     height: 45vw;
     position: relative;
-    border-radius: $corners;
+    // border-radius: $corners;
     // background: url(images/couple.jpg) no-repeat top center; // fixed;
     background: url(images/IMG_7004-edited-min.jpg) no-repeat top center; // fixed;
     background-size: cover;
@@ -70,7 +71,7 @@ body {
       margin: 0;
       position: absolute;
       top: 50%;
-      left: 50%;
+      left: 25%;
       -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
       p {
@@ -79,20 +80,30 @@ body {
     }
   }
   .banner_date {
-    color: $maroon;
+    
+    p {
+      border: solid 1px;
+      width: 35vw;
+      margin: auto;
+      padding: 4vw 0vw;
+      background-color: #00000055;
+    }
+    color: white;
     font-family: "SixCaps";
     font-size: 4.5vw;
     text-transform: uppercase;
     text-align: center;
-    margin: 0.5em 0;
+    padding: 10vw;
+    margin: 0;
     @media screen and (max-width: $break-small) {
       font-size: 10vw;
     }
   }
   .us {
     // display: flex;
-    // margin: 0 5em;
+    margin: 2vw 15vw;
     float: left;
+    overflow: hidden;
     @media screen and (max-width: $break-small) {
       margin: 0;
       float: left;
@@ -114,6 +125,8 @@ body {
       color: white;
       font-family: "Dorso";
       font-size: 1em;
+      overflow: hidden;
+      padding: 0vw 5vw;
       // padding: 0 20px;
       // text-transform: uppercase;
     }
@@ -122,6 +135,7 @@ body {
 
 .honeyPot {
   float: left;
+  margin: 0vw 10vw;
   .honeypot-img {
     float: left;
     width: 20vw;
@@ -226,6 +240,7 @@ body {
 }
 
 .lodgings {
+  margin: 0vw 10vw;
   .banner_panel {
     background-color: rgba(255, 255, 255, 0.5);
     margin-bottom: 3vw;
@@ -286,6 +301,7 @@ body {
   cursor: pointer;
 }
 .location {
+  margin: 0vw 10vw;
   .location_panel {
     background-color: rgba(255, 255, 255, 0.5);
     margin-bottom: 3vw;
@@ -372,6 +388,7 @@ h1 {
 }
 
 .invitation_control {
+  margin: 0vw 10vw;
   .main-invitaion-div {
     background-color: $dark-gray-opaque;
     padding: 10px;

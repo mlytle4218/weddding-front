@@ -61,7 +61,8 @@ class App extends Component {
 
 
 
-                <div className="container">
+                <div>
+                {/* <div className="container"> */}
                     <Switch>
                         <Route exact path="/" component={Banner} />
                         <Route path="/location" component={Location} />

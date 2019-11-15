@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import logo from '../images/logo2_m.png'
-import us from '../images/us_small.jpg'
+import logo from '../images/logo2_m.png';
+// import us from '../images/us_small.jpg';
+import us from '../images/outside.jpg'
+import background from '../images/5f846f7f.png';
+
+let date_styling = {
+    backgroundImage: `url(${background})`
+}
 
 class Banner extends Component {
     render() {
@@ -14,12 +20,24 @@ class Banner extends Component {
 
 
                 </div >
-                <div className='banner_date'>
-                    April 18, 2020 -  Story, IN
+                <div className='banner_date' style={date_styling}>
+                    <p>April 18, 2020 -  Story, IN</p>
                 </div>
                 <div className='us'>
-                    <div><img  className='us_image' src={us} alt="Michelle and Marc"/></div>
-                    <div className='us_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam convallis convallis metus nec mattis. Sed bibendum justo mattis placerat ornare. Donec vehicula tellus ac tristique venenatis. Nulla ipsum dui, auctor vel tincidunt cursus, maximus non nisi. Sed sit amet vestibulum turpis. Nullam ut efficitur nisi, quis hendrerit dui. Ut vel scelerisque felis, ac tincidunt turpis. Proin non sapien urna. Aenean molestie ex justo, vitae blandit enim convallis eget. Mauris gravida eros et magna dapibus dapibus. Phasellus vel ultricies purus. Vestibulum interdum vestibulum arcu, et consequat justo scelerisque et. Vestibulum condimentum ante erat, in gravida urna varius sed. Nullam fringilla ligula ante.</div>
+                    <div>
+                        <img  className='us_image' src={us} alt="Michelle and Marc"/>
+                    </div>
+
+                    <div className='us_text'>
+                        Thank you for visiting out wedding website. We have puth this together to share our story, help our guests, and provide directions to relavent locations for the ceremony. We are very excited to be getting married and to share with each of you.
+                        <br/>
+                        <br/>
+                        We met almost twenty years ago when we were both on air talent for local radio stations. We met in passing and over time found ourselves together more and more. We made a bond that has held all this time.
+                        <br/>
+                        <br/>
+                        And now we are making it official and look forward to sharing it with you all.
+                    </div>
+                    
                 </div>
             </div>
         );
