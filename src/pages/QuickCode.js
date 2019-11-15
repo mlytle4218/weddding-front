@@ -205,7 +205,7 @@ class QuickCode extends Component {
 
 
 
-                        <p>Please let us know any songs you like at weddings:</p>
+                        <p>Please let us know any songs you would like to hear at our wedding:</p>
                         {this.state.songs.map((song, index) => {
                             return (
                                 <Song
