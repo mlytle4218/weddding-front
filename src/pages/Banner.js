@@ -32,10 +32,10 @@ class Banner extends Component {
                         Thank you for visiting out wedding website. We have puth this together to share our story, help our guests, and provide directions to relavent locations for the ceremony. We are very excited to be getting married and to share with each of you.
                         <br/>
                         <br/>
-                        We met almost twenty years ago when we were both on air talent for local radio stations. We met in passing and over time found ourselves together more and more. We made a bond that has held all this time.
+                        We met over 20 years ago, and what started as a friendship turned quickly into love and a wonderful, weird, beautiful relationship.
                         <br/>
                         <br/>
-                        And now we are making it official and look forward to sharing it with you all.
+                        Please join us as we celebrate our life together.
                     </div>
                     
                 </div>

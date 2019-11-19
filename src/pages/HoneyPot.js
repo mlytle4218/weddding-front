@@ -14,10 +14,7 @@ class HoneyPot extends Component {
 
 
                     <p>
-                        We have been together for a while and don't really need anything to start our married lives.
-                    </p>
-                    <p>
-                    So, in lieu of a specific list of gifts, we just have a little honey moon honey pot. If you want to gift us something, but don't have a clue, throw us a few bucks to help pay for our trip to Europe.
+                        Hey, everybody!! Tricked Ya. This isn't really a registry. We decided that we'd much rather have an amazing experience together, so, please help us go on our honeymoon to Italy and Spain!! Grazie!!
                     </p>
                     
                </p>
