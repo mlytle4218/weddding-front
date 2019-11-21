@@ -21,7 +21,7 @@ class Gallery extends Component {
                         </p>
                             <p>
                                 For booking information, contact Lisa Lee<br></br>
-                                Phone: (818)<br></br>
+                                Phone: (908) 451-7143 <br></br>
                                 Email: LISA@AVETRAVELGROUP.COM
                         </p>
                         <p>

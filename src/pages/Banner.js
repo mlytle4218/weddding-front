@@ -29,7 +29,7 @@ class Banner extends Component {
                     </div>
 
                     <div className='us_text'>
-                        Thank you for visiting out wedding website. We have puth this together to share our story, help our guests, and provide directions to relavant locations for the ceremony. We are very excited to be getting married and to share with each of you.
+                        Thank you for visiting out wedding website. We have put this together to share our story, help our guests, and provide directions to relavant locations for the ceremony. We are very excited to be getting married and to share with each of you.
                         <br/>
                         <br/>
                         We met over 20 years ago, and what started as a friendship turned quickly into love and a wonderful, weird, beautiful relationship.
