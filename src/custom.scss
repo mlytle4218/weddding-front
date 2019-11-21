@@ -196,6 +196,9 @@ body {
 .guestForm {
   text-align: center;
   .guestForm-form {
+    .formGuests {
+      margin-bottom: 10px;
+    }
     text-align: left;
     line-height: 1;
     font-family: "Dorso";
@@ -219,7 +222,6 @@ body {
     margin-top: 25px;
   }
   .updated {
-    // background-color: $update-green;
     margin-top: 25px;
   }
 }

@@ -203,7 +203,11 @@ class QuickCode extends Component {
     render() {
         return (
             <div className="guestForm">
+                {/* {this.state.people.length >1 ? this.state.people[0].name + " and " +this.state.people[1].name : this.state.people[0].name} */}
                 <div className="guestForm-form">
+                <p className='formGuests'>{ this.state.people.length ==2 ? this.state.people[0].name + " & " + this.state.people[1].name : null }
+                { this.state.people.length ==1 ? this.state.people[0].name : null }</p>
+                
                     {this.state.id ?
 
                         <form onSubmit={this.handleSubmit.bind(this)}>
