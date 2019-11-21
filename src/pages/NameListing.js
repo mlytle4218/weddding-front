@@ -32,7 +32,7 @@ export default class NameListing extends Component {
           className='listing_name'
           onClick={this.openListing.bind(this)}>{this.props.item.people[0].name}
         </button>
-          RSVP: {this.props.item.rsvp}
+        {this.props.item.rsvp < 0 ? 'Not attending' : "Attending: " + this.props.item.rsvp}
 
         <button
           className='listing_delete'

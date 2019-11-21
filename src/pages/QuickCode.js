@@ -18,6 +18,7 @@ class QuickCode extends Component {
         this.handleChangeValueDelete = this.handleChangeValueDelete.bind(this)
         this.handleAddSong = this.handleAddSong.bind(this)
         this.handleUpdateWillAttend = this.handleUpdateWillAttend.bind(this)
+        this.handleUpdateWillNotAttend = this.handleUpdateWillNotAttend.bind(this)
         this.handleUpdatePlusOne = this.handleUpdatePlusOne.bind(this)
 
     }
@@ -72,6 +73,19 @@ class QuickCode extends Component {
                 console.log(error)
             })
     }
+    handleUpdateWillNotAttend(event) {
+        let result
+        if (event.target.checked) {
+            result = -1
+        } else {
+            result = 0
+        }
+        this.setState({
+            ...this.state,
+            rsvp: result,
+            updated: false
+        })
+    }
     handleUpdateWillAttend(event) {
         if (event.target.checked) {
             this.setState({
@@ -86,7 +100,7 @@ class QuickCode extends Component {
                 updated: false
             })
 
-        } 
+        }
     }
     handleUpdatePlusOne(event) {
         if (event.target.checked) {
@@ -105,12 +119,12 @@ class QuickCode extends Component {
         }
     }
 
-    handleEmailChange(event){
+    handleEmailChange(event) {
         let value = event.target.value
         this.setState({
             ...this.state,
             email: value,
-            updated:false
+            updated: false
         })
     }
     // handleEmailChangeOld(event) {
@@ -228,6 +242,16 @@ class QuickCode extends Component {
                                     />
                                 </label>
                                 : null}
+                            <br></br>
+                            <label >Will Not Attend
+                            <input
+                                    type="checkbox"
+                                    name="will_not_attend"
+                                    id="will_not_attend"
+                                    checked={this.state.rsvp < 0}
+                                    onChange={this.handleUpdateWillNotAttend.bind(this)}
+                                />
+                            </label>
 
 
 
