@@ -7,6 +7,7 @@ class QuickCode extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            updated: true,
             code: null,
             token: null,
             id: null,
@@ -17,7 +18,7 @@ class QuickCode extends Component {
         this.handleChangeValueDelete = this.handleChangeValueDelete.bind(this)
         this.handleAddSong = this.handleAddSong.bind(this)
         this.handleUpdateWillAttend = this.handleUpdateWillAttend.bind(this)
-        this.handleUpdatePlusOne =  this.handleUpdatePlusOne.bind(this)
+        this.handleUpdatePlusOne = this.handleUpdatePlusOne.bind(this)
 
     }
     componentDidMount() {
@@ -26,6 +27,12 @@ class QuickCode extends Component {
         let idCookie = Cookies.get('invId')
         this.getInvitation(idCookie, tokenCookie)
         this.setState({ token: tokenCookie, code: codeCookie, id: idCookie })
+    }
+    warnChangesNotSaved() {
+        this.setState({
+            ...this.state,
+            updated: false
+        })
     }
     handleChangeValue(value, index) {
         this.setState((prevState) => {
@@ -49,6 +56,7 @@ class QuickCode extends Component {
             });
             return {
                 songs,
+                updated: false
             }
         })
     }
@@ -65,75 +73,90 @@ class QuickCode extends Component {
             })
     }
     handleUpdateWillAttend(event) {
-         if (event.target.checked){
+        if (event.target.checked) {
             this.setState({
                 ...this.state,
-                rsvp: parseInt(this.state.people.length)
+                rsvp: parseInt(this.state.people.length),
+                updated: false
             })
         } else {
             this.setState({
                 ...this.state,
-                rsvp: 0
+                rsvp: 0,
+                updated: false
             })
 
-        }
-        console.log(this.state.rsvp)
+        } 
     }
     handleUpdatePlusOne(event) {
         if (event.target.checked) {
             this.setState({
                 ...this.state,
-                rsvp: this.state.rsvp +1
+                rsvp: this.state.rsvp + 1,
+                updated: false
             })
         } else {
             this.setState({
                 ...this.state,
-                rsvp: this.state.rsvp -1
+                rsvp: this.state.rsvp - 1,
+                updated: false
             })
 
         }
     }
 
-    handleChange(event) {
-        let value
-        let check 
-        switch (event.target.name) {
-            case "email":
-                value = event.target.value
-                break
-            case "will_attend":
-                if (event.target.checked) {
-                    value = this.state.rsvp + 1
-                } else {
-                    value = this.state.rsvp - 1
-                }
-                check = event.target.checked
-                break
-            case "plus_one":
-                value = parseInt(event.target.value)
-                break
-            default:
-                value = event.target.value
-
-        }
-        if (check){
-            this.setState({
-                ...this.state,
-                [event.target.name]: check,
-                rsvp: value
-            })
-        } else {
-            this.setState({
-                ...this.state,
-                [event.target.name]: value
-            })
-        }
+    handleEmailChange(event){
+        let value = event.target.value
+        this.setState({
+            ...this.state,
+            email: value,
+            updated:false
+        })
     }
+    // handleEmailChangeOld(event) {
+    //     let value
+    //     let check
+    //     switch (event.target.name) {
+    //         case "email":
+    //             console.log('email')
+    //             value = event.target.value
+    //             break
+    //         case "will_attend":
+    //             if (event.target.checked) {
+    //                 value = this.state.rsvp + 1
+    //             } else {
+    //                 value = this.state.rsvp - 1
+    //             }
+    //             check = event.target.checked
+    //             break
+    //         case "plus_one":
+    //             value = parseInt(event.target.value)
+    //             break
+    //         default:
+    //             value = event.target.value
+
+    //     }
+    //     if (check) {
+    //         console.log(event.target.name)
+    //         this.setState({
+    //             ...this.state,
+    //             [event.target.name]: check,
+    //             rsvp: value,
+    //             updated: false
+    //         })
+    //     } else {
+    //         this.setState({
+    //             ...this.state,
+    //             [event.target.name]: value,
+    //             updated: false
+    //         })
+    //     }
+    // }
     handleAddSong(event) {
         event.preventDefault()
         let songsTemp = this.state.songs;
         songsTemp.push({ "name": "" })
-        this.setState({ songs: songsTemp })
+        this.setState({ songs: songsTemp, updated: false })
     }
     handleSubmit(event) {
         event.preventDefault()
@@ -152,7 +175,10 @@ class QuickCode extends Component {
                 },
                 { headers: { "Authorization": "Bearer " + this.state.token } }
             ).then((response) => {
-                this.setState({ ...response.data })
+                this.setState({
+                    ...response.data,
+                    updated: true
+                })
             }).catch((error) => {
                 console.log(error)
             })
@@ -164,65 +190,69 @@ class QuickCode extends Component {
         return (
             <div className="guestForm">
                 <div className="guestForm-form">
-                {this.state.id ?
+                    {this.state.id ?
 
-                    <form onSubmit={this.handleSubmit.bind(this)}>
-                        <p>Please enter you email for possible updates and information: </p>
+                        <form onSubmit={this.handleSubmit.bind(this)}>
+                            <p>Please enter you email for possible updates and information: </p>
 
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="email"
-                            id="email"
-                            defaultValue={this.state.email}
-                            onChange={this.handleChange.bind(this)}
-                        />
-                        <br></br>
-                        <br></br>
-                        <p>Please let us know if you will be attending:</p>
-                        <label >Will Attend
                             <input
-                                type="checkbox"
-                                name="will_attend"
-                                id="will_attend"
-                                checked = {this.state.rsvp >= 1}
-                                onChange={this.handleUpdateWillAttend.bind(this)}
+                                type="email"
+                                name="email"
+                                placeholder="email"
+                                id="email"
+                                defaultValue={this.state.email}
+                                onChange={this.handleEmailChange.bind(this)}
                             />
-                        </label>
-
-
-                        {  this.state.rsvpAllowed - this.state.people.length == 1   ?
-                            <label>Plus 1
-                                <input
+                            <br></br>
+                            <br></br>
+                            <p>Please let us know if you will be attending:</p>
+                            <label >Will Attend
+                            <input
                                     type="checkbox"
-                                    name="plus_one"
-                                    id="plus_one"
-                                    checked = {this.state.rsvpAllowed == this.state.rsvp}
-                                    onChange={this.handleUpdatePlusOne.bind(this)}
+                                    name="will_attend"
+                                    id="will_attend"
+                                    checked={this.state.rsvp >= 1}
+                                    onChange={this.handleUpdateWillAttend.bind(this)}
                                 />
                             </label>
-                            : null}
+
+
+                            {this.state.rsvpAllowed - this.state.people.length == 1 ?
+                                <label>Plus 1
+                                <input
+                                        type="checkbox"
+                                        name="plus_one"
+                                        id="plus_one"
+                                        checked={this.state.rsvpAllowed == this.state.rsvp}
+                                        onChange={this.handleUpdatePlusOne.bind(this)}
+                                    />
+                                </label>
+                                : null}
 
 
 
-                        <p>Please let us know which songs you would like to hear at our reception:</p>
-                        {this.state.songs.map((song, index) => {
-                            return (
-                                <Song
-                                    key={index}
-                                    index={index}
-                                    song={song}
-                                    handleChangeValue={this.handleChangeValue}
-                                    handleChangeValueDelete={this.handleChangeValueDelete}
-                                />)
-                        })}
-                        {this.state.songs.length < 5 ? <button  onClick={this.handleAddSong.bind(this)}>Add Song</button > : null}
-                        <br></br>
+                            <p>Please let us know which songs you would like to hear at our reception:</p>
+                            {this.state.songs.map((song, index) => {
+                                return (
+                                    <Song
+                                        key={index}
+                                        index={index}
+                                        song={song}
+                                        handleChangeValue={this.handleChangeValue}
+                                        handleChangeValueDelete={this.handleChangeValueDelete}
+                                    />)
+                            })}
+                            {this.state.songs.length < 5 ? <button onClick={this.handleAddSong.bind(this)}>Add Song</button > : null}
+                            <br></br>
 
 
 
-                        <button className="guestFormSubmit" type="submit">Save changes</button>
-                    </form> : null}
+                            <button
+                                className={this.state.updated ? "updated" : "update"}
+                                type="submit">
+                                Save changes
+                        </button>
+                        </form> : null}
                 </div>
             </div >
         );
