@@ -27,13 +27,14 @@ export default class Invitation_Listings extends Component {
             '/api/invitation',
             { headers: { "Authorization": "Bearer " + token } }
         ).then(response => {
-            console.log(response)
+            // console.log(response)
             response.data.sort((a,b) => 
                 (a.people[0].name > b.people[0].name) ? 1 : -1
             )
             response.data.forEach((item) => {
                 item.show = false;
                 item.updated = true;
+                item.dialogOpen = false
             })
             this.setState({
                 invitation_data: response.data,
@@ -200,7 +201,6 @@ export default class Invitation_Listings extends Component {
                 <form>
                     {this.state.invitation_data.map(
                         (item, itr) => {
-
                             return (
                                 <div>
                                     {/* <input className='listing_checkbox' type="checkbox" value={item._id} onClick={this.toggle}/> */}
